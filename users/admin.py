@@ -1,3 +1,4 @@
-from django.contrib import admin
+from core.admin import BaseAdmin
 
-# Register your models here.
+# Auto register each model in this app to django admin.
+BaseAdmin.register_admin_classes("users", globals())

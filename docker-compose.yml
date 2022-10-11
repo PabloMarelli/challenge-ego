@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  drf-api:
+    build: .
+    container_name: drf-api
+    # Public environment
+    environment:
+      - DB_NAME=postgres
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres
+      - DB_HOST=pgdb
+    # Opening ports
+    ports:
+      - "8000:8000"
+    depends_on:
+      - pgdb
+    # Load ENV variables in container
+    env_file:
+      - .env
+    # Makes directory sync from container to drive
+    volumes:
+      - .:/app
+
+  pgdb:
+    image: postgres:13
+    container_name: pgdb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    # env_file:
+    #   - env
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5433:5433"
+
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   container_name: pgdbadmin
+  #   depends_on:
+  #     - pgdb
+  #   ports:
+  #     - "5051:80"
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+  #     PGADMIN_DEFAULT_PASSWORD: root
+  #   restart: always
+volumes:
+  postgres_data:
