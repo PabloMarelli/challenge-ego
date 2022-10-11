@@ -2,14 +2,14 @@ from rest_framework import serializers
 from catalog.models import Vehicle, Category
 
 
-class VehicleSerializer(serializers.Serializer):
+class VehicleSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Vehicle
         fields = '__all__'
         
 
-class CategorySerializer(serializers.Serializer):
+class CategorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Category

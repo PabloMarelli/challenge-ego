@@ -3,15 +3,11 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
-from django.urls import path, include
-
 class ApiHome(APIView):
     """
     This is the main application endpoint.
     From this endpoint you can explore each resources by clicking in each link below.
     """
-
-    # permission_classes = [IsAdminOrReadOnly]
 
     def get(self, request):
         response = {

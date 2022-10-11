@@ -4,6 +4,7 @@ from core.models import BaseModel
 
 
 class Vehicle(BaseModel):
+    
     name = models.CharField(max_length=255)
     model = models.PositiveIntegerField()
     price = models.PositiveIntegerField()
