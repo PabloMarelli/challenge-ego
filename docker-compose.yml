@@ -1,9 +1,9 @@
 version: "3.9"
 
 services:
-  drf-api:
+  egochallenge-api:
     build: .
-    container_name: drf-api
+    container_name: egochallenge-api
     # Public environment
     environment:
       - DB_NAME=postgres
@@ -27,25 +27,11 @@ services:
     container_name: pgdb
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    # env_file:
-    #   - env
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     ports:
       - "5433:5433"
-
-  # pgadmin:
-  #   image: dpage/pgadmin4
-  #   container_name: pgdbadmin
-  #   depends_on:
-  #     - pgdb
-  #   ports:
-  #     - "5051:80"
-  #   environment:
-  #     PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
-  #     PGADMIN_DEFAULT_PASSWORD: root
-  #   restart: always
 volumes:
   postgres_data:

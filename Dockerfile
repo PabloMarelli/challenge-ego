@@ -1,7 +1,7 @@
 # PULL PYTHON IMAGE
 FROM python:3.8-slim-bullseye
 
-RUN useradd -ms /bin/bash lacolorada
+RUN useradd -ms /bin/bash apiuser
 
 # SET WORKING DIR AND COPY REQUIREMENTS
 RUN mkdir /app
@@ -29,4 +29,4 @@ ADD . /app
 
 EXPOSE 8000
 
-CMD su lacolorada -c 'python3 manage.py runserver 0.0.0.0:8000'
+CMD su apiuser -c 'python3 manage.py runserver 0.0.0.0:8000'
